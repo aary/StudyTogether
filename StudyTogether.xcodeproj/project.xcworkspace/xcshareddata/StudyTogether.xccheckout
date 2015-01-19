@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>735C17D9-B033-48B6-B913-300AA88F0D9F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>StudyTogether</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D03B273F5F9304960D96CB326C5277CDF2EEBA05</key>
+		<string>https://github.com/aary/StudyTogether.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>StudyTogether.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D03B273F5F9304960D96CB326C5277CDF2EEBA05</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/aary/StudyTogether.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D03B273F5F9304960D96CB326C5277CDF2EEBA05</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D03B273F5F9304960D96CB326C5277CDF2EEBA05</string>
+			<key>IDESourceControlWCCName</key>
+			<string>StudyTogether</string>
+		</dict>
+	</array>
+</dict>
+</plist>

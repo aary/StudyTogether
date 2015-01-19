@@ -22,11 +22,9 @@
 -(void) viewWillAppear:(BOOL)animated {
     // Setup the visuals of the tabBarItems in the tab bar controller
     [[self.tabBar.items objectAtIndex:0] setTitle:@"Conversations"];
-    [[self.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"testCircle"]];
-    
-    //[[self.tabBar.items objectAtIndex:1] setTitle:@"Study Groups"];
-    //[[self.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"testCircle"]];
+    [[self.tabBar.items objectAtIndex:1] setTitle:@"Study Groups"];
 
+    //[[self.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"testCircle"]];
     /*NSMutableArray* array = [[NSMutableArray alloc] init];
     [array addObject:[[UITabBarItem alloc] initWithTitle:@"Conversations"
                                                   image:[UIImage imageNamed:@"testCircle"]
