@@ -68,6 +68,10 @@ static NSString* segueToLoggedInScreen = @"segueToLoggedInScreen";
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
 
+        // EXAMPLE USER
+        logInViewController.logInView.usernameField.text = @"aary";
+        logInViewController.logInView.passwordField.text = @"1234";
+        
         // DRAWING A CIRCLE
         /*UIButton* circleView = [[UIButton alloc] initWithFrame:CGRectMake(100,100,50,50)];
         circleView.alpha = 0.5;

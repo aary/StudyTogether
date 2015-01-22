@@ -13,6 +13,13 @@
 @synthesize className = _className;
 @synthesize circleView = _circleView;
 
+-(id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    [self layoutSubviews];
+    
+    return self;
+}
+
 -(void) layoutSubviews {
 // EFFECTS : Lays out a circle and positions it correctly in the cell, lays out the foundational
 //           appearance of the custom cell. All customization happens programatically and is hard
@@ -20,10 +27,11 @@
     [super layoutSubviews];
     
     // Create the circle and add it to the cell
+    UIColor* colorForCircleView = [UIColor grayColor];
     self.circleView = [[UIButton alloc] initWithFrame:CGRectMake(5,5,80,80)];
-    self.circleView.alpha = 0.3;
+    self.circleView.alpha = 0.5;
     self.circleView.layer.cornerRadius = 40;
-    self.circleView.backgroundColor = [UIColor grayColor];
+    self.circleView.backgroundColor = [colorForCircleView colorWithAlphaComponent:0.5];
     [self.circleView setTitle:@"" forState:UIControlStateNormal];
     self.circleView.enabled = NO;
     self.circleView.adjustsImageWhenHighlighted = NO;
@@ -33,6 +41,10 @@
     self.className = [[UILabel alloc] initWithFrame:CGRectMake(100, 15, 200, 20)];
     [self.className setText:@""];
     [self.contentView addSubview:self.className];
+    
+    self.collegeName = [[UILabel alloc] initWithFrame:CGRectMake(100, 45, 200, 20)];
+    [self.collegeName setText:@""];
+    [self.contentView addSubview:self.collegeName];
     
     /*[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[circleView]-[txtLbl]"
                                                                                      options:0

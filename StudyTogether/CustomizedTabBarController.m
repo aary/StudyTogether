@@ -9,7 +9,8 @@
 #import "CustomizedTabBarController.h"
 
 @interface CustomizedTabBarController ()
-
+// EFFECTS : Sets the title of the navigation bar to this and formats the title
+-(void) setTitleForNavigationBar:(NSString *)titleString;
 @end
 
 @implementation CustomizedTabBarController
@@ -17,6 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from the storyboard
+    UIBarButtonItem *newBackButton =
+    [[UIBarButtonItem alloc] initWithTitle:@"t"
+                                     style:UIBarButtonItemStyleDone
+                                    target:self
+                                    action:nil];
+    self.navigationItem.backBarButtonItem = newBackButton;
+    [self setTitleForNavigationBar:@"TEST CLASS"];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -49,5 +57,19 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+-(void) setTitleForNavigationBar:(NSString *)titleString {
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = titleString;
+    self.navigationItem.titleView = titleLabel;
+    [titleLabel sizeToFit];
+}
+
 
 @end

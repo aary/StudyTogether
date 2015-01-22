@@ -18,6 +18,20 @@ typedef CustomLoginViewCell CustomTVCell;
 @interface LoggedInTVC()
 // EFFECTS : Sets the title of the navigation bar to this and formats the title
 -(void) setTitleForNavigationBar:(NSString *)titleString;
+
+// The array that stores the user's current class IDs
+@property (strong, nonatomic) NSArray* currentClassIDs;
+
+// EFFECTS : Loads data from the cloud for the classes the user is currently taking.
+//           stores all class IDs into currentClassIDs;
+-(void) loadClassIDsFromCloud;
+
+@property (strong, nonatomic) NSMutableArray* classNames;
+@property (strong, nonatomic) NSMutableArray* classColleges;
+
+// EFFECTS : Uses the array of currentClassIDs to get data for each class from the cloud
+//           and stores it into data recognizable by the table view
+-(void) parseClassDataIntoDataForTableView:(NSInteger)i;
 @end
 
 
@@ -35,12 +49,23 @@ typedef CustomLoginViewCell CustomTVCell;
     
     // Set title for navigation bar
     [self setTitleForNavigationBar:@"Your Classes"];
+    
+    // Load data from the cloud for all the classes the user is taking.
+    self.currentClassIDs = [[NSArray alloc] init];
+    self.classNames = [[NSMutableArray alloc] init];
+    self.classColleges = [[NSMutableArray alloc] init];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
 // EFFECTS : Called when the view is about to appear onto the screen. Any calls from
 //           the model to load data from the cloud should be done here
     [super viewWillAppear:animated];
+    [self loadClassIDsFromCloud];
+    [self parseClassDataIntoDataForTableView:0];
+    //[self.tableView reloadData];
+    for (int i = 0; i < self.classNames.count; i++) {
+        NSLog(@"%@", self.classNames[i]);
+    }
 }
 
 
@@ -59,10 +84,38 @@ typedef CustomLoginViewCell CustomTVCell;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.text = titleString;
-    [titleLabel sizeToFit];
     self.navigationItem.titleView = titleLabel;
+    [titleLabel sizeToFit];
 }
 
+-(void) loadClassIDsFromCloud {
+// EFFECTS : Loads data from the cloud for the classes the user is currently taking.
+//           stores all class IDs into currentClassIDs;
+    PFUser* currentUser = [PFUser currentUser];
+    self.currentClassIDs = [currentUser objectForKey:@"classesTaking"];
+    NSLog(@"Number of objects in classesTaking is %ld", self.currentClassIDs.count);
+    if ([self.currentClassIDs count])
+        NSLog(@"And its value is %@", self.currentClassIDs[0]);
+}
+
+-(void) parseClassDataIntoDataForTableView:(NSInteger) i {
+    NSLog(@"i is %d", i);
+    if (i == 0) {
+        [self.classNames removeAllObjects];
+        [self.classColleges removeAllObjects];
+    }
+    if (i == (self.currentClassIDs.count)) {
+        [self.tableView reloadData];
+        return;
+    }
+    
+    PFQuery* query = [PFQuery queryWithClassName:@"UserClass"];
+    [query getObjectInBackgroundWithId:self.currentClassIDs[i] block:^(PFObject* object, NSError* error) {
+        [self.classNames insertObject:object[@"userClassName"] atIndex:i];
+        [self.classColleges insertObject:object[@"collegeOfUserClass"] atIndex:i];
+        [self parseClassDataIntoDataForTableView:(i+1)];
+    }];
+}
 
 //**************************************************************************************************
 #pragma mark - Table view data source
@@ -75,7 +128,7 @@ typedef CustomLoginViewCell CustomTVCell;
     printf("WORKING DATA SOURCE\n\n");
 #endif
     
-    NSInteger numberOfRows = 6;
+    NSInteger numberOfRows = [self.classNames count];
     // Add code here to take data from model and display the number of rows
     return numberOfRows;
 }
@@ -103,11 +156,57 @@ typedef CustomLoginViewCell CustomTVCell;
     if (cell == nil) {
         cell = [[CustomLoginViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                           reuseIdentifier:tableViewCellIdentifier];
+        
+    }
+    /*else {
+        for (int i = cell.contentView.subviews.count -1; i>=0; i--) {
+            UIView * v = [cell.contentView.subviews objectAtIndex:i];
+            if ([v isKindOfClass:[UILabel class]]) {
+                [v removeFromSuperview];
+            }
+        }
+    }*/
+    
+    for(UIView *view in cell.contentView.subviews){
+        if ([view isKindOfClass:[UIView class]]) {
+            [view removeFromSuperview];
+        }
     }
     
-    // Modify cell according to database here
-
+    [cell layoutSubviews];
     
+    NSString* classNameForCell = self.classNames[indexPath.row];
+    NSMutableAttributedString* classNameForCellAttributed = [[NSMutableAttributedString alloc] initWithString:classNameForCell];
+    [classNameForCellAttributed addAttribute:NSFontAttributeName
+                                       value:[UIFont fontWithName:@"Baskerville-Bold" size:17]
+                                       range:NSMakeRange(0, classNameForCell.length)];
+    [cell.className setAttributedText:classNameForCellAttributed];
+    //[cell.className setText:self.classNames[indexPath.row]];
+    NSString* titleForCircleViewString = [self.classNames[indexPath.row] substringWithRange:NSMakeRange(0, 1)];
+    
+    NSMutableAttributedString* titleForCircleView = [[NSMutableAttributedString alloc] initWithString:titleForCircleViewString];
+    [titleForCircleView addAttribute:NSFontAttributeName
+                               value:[UIFont boldSystemFontOfSize:30]
+                               range:NSMakeRange(0, titleForCircleViewString.length)];
+    [titleForCircleView addAttribute:NSForegroundColorAttributeName
+                               value:[UIColor whiteColor]
+                               range:NSMakeRange(0, titleForCircleViewString.length)];
+    [cell.circleView setAttributedTitle:titleForCircleView forState:UIControlStateNormal];
+    //[cell.circleView setTitle:[self.classNames[indexPath.row] substringWithRange:NSMakeRange(0, 1)]
+    //                 forState:UIControlStateNormal];
+    
+    NSLog(@"ClassColleges Length %@", self.classColleges[0]);
+    NSString* collegeNameForCellString = self.classColleges[indexPath.row];
+    NSMutableAttributedString*  collegeNameForCellAttributedString = [[NSMutableAttributedString alloc]
+                                                                      initWithString:collegeNameForCellString];
+    [collegeNameForCellAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Avenir-BookOblique"
+                                                                                               size:14]
+                                               range:NSMakeRange(0,collegeNameForCellString.length)];
+    [collegeNameForCellAttributedString addAttribute:NSForegroundColorAttributeName value:[[UIColor grayColor] colorWithAlphaComponent:0.7]
+                                               range:NSMakeRange(0, collegeNameForCellString.length)];
+    [cell.collegeName setAttributedText:collegeNameForCellAttributedString];
+
+    // Modify cell according to database here Avenir-BookOblique
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     return cell;
 }

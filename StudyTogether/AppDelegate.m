@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface AppDelegate ()
 
@@ -23,7 +24,13 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundimage"]]];
-
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    UIView* viewForCellBackgroundWhenSelected = [[UIView alloc] init];
+    UIColor* colorForTableViewCells = [UIColor grayColor];
+    viewForCellBackgroundWhenSelected.backgroundColor = [colorForTableViewCells colorWithAlphaComponent:0.3];
+    viewForCellBackgroundWhenSelected.alpha = 0.3;
+    [UITableViewCell appearance].selectedBackgroundView = viewForCellBackgroundWhenSelected;
     return YES;
 }
 

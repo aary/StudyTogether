@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		481375441A6DAD1F00B94436 /* CustomizedTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481375431A6DAD1F00B94436 /* CustomizedTabBarController.m */; };
 		48507E241A6C729000E0F9A0 /* CustomLoginViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48507E231A6C729000E0F9A0 /* CustomLoginViewCell.m */; };
+		486807FF1A6DD9630091F979 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 486807FE1A6DD9630091F979 /* User.m */; };
+		486AD6741A70CCC7001993B8 /* NewClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486AD6731A70CCC7001993B8 /* NewClassViewController.m */; };
+		488458821A6DB6030054A49A /* ConversationsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 488458811A6DB6030054A49A /* ConversationsTVC.m */; };
 		48E0F2531A6B14F100E46D58 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E0F2521A6B14F100E46D58 /* main.m */; };
 		48E0F2561A6B14F100E46D58 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E0F2551A6B14F100E46D58 /* AppDelegate.m */; };
 		48E0F2591A6B14F100E46D58 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E0F2581A6B14F100E46D58 /* LoginViewController.m */; };
@@ -53,6 +56,12 @@
 		481375431A6DAD1F00B94436 /* CustomizedTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedTabBarController.m; sourceTree = "<group>"; };
 		48507E221A6C729000E0F9A0 /* CustomLoginViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoginViewCell.h; sourceTree = "<group>"; };
 		48507E231A6C729000E0F9A0 /* CustomLoginViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoginViewCell.m; sourceTree = "<group>"; };
+		486807FD1A6DD9630091F979 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = CommunicationModel/User.h; sourceTree = "<group>"; };
+		486807FE1A6DD9630091F979 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = CommunicationModel/User.m; sourceTree = "<group>"; };
+		486AD6721A70CCC7001993B8 /* NewClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewClassViewController.h; sourceTree = "<group>"; };
+		486AD6731A70CCC7001993B8 /* NewClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewClassViewController.m; sourceTree = "<group>"; };
+		488458801A6DB6030054A49A /* ConversationsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationsTVC.h; sourceTree = "<group>"; };
+		488458811A6DB6030054A49A /* ConversationsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationsTVC.m; sourceTree = "<group>"; };
 		48E0F24D1A6B14F100E46D58 /* StudyTogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyTogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E0F2511A6B14F100E46D58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48E0F2521A6B14F100E46D58 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -126,6 +135,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		488458861A6DB99E0054A49A /* CommunicationModel */ = {
+			isa = PBXGroup;
+			children = (
+				486807FD1A6DD9630091F979 /* User.h */,
+				486807FE1A6DD9630091F979 /* User.m */,
+			);
+			name = CommunicationModel;
+			sourceTree = "<group>";
+		};
 		48E0F2441A6B14F100E46D58 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +166,7 @@
 		48E0F24F1A6B14F100E46D58 /* StudyTogether */ = {
 			isa = PBXGroup;
 			children = (
+				48E0F25A1A6B14F100E46D58 /* Main.storyboard */,
 				48E0F2571A6B14F100E46D58 /* LoginViewController.h */,
 				48E0F2581A6B14F100E46D58 /* LoginViewController.m */,
 				48507E221A6C729000E0F9A0 /* CustomLoginViewCell.h */,
@@ -156,7 +175,11 @@
 				48FB605D1A6C578F001D0BC0 /* LoggedInTVC.m */,
 				481375421A6DAD1F00B94436 /* CustomizedTabBarController.h */,
 				481375431A6DAD1F00B94436 /* CustomizedTabBarController.m */,
-				48E0F25A1A6B14F100E46D58 /* Main.storyboard */,
+				486AD6721A70CCC7001993B8 /* NewClassViewController.h */,
+				486AD6731A70CCC7001993B8 /* NewClassViewController.m */,
+				488458801A6DB6030054A49A /* ConversationsTVC.h */,
+				488458811A6DB6030054A49A /* ConversationsTVC.m */,
+				488458861A6DB99E0054A49A /* CommunicationModel */,
 				48E0F25D1A6B14F100E46D58 /* Images.xcassets */,
 				48E0F25F1A6B14F100E46D58 /* LaunchScreen.xib */,
 				48E0F2501A6B14F100E46D58 /* Supporting Files */,
@@ -331,12 +354,15 @@
 			files = (
 				48E0F2591A6B14F100E46D58 /* LoginViewController.m in Sources */,
 				48E0F2561A6B14F100E46D58 /* AppDelegate.m in Sources */,
+				488458821A6DB6030054A49A /* ConversationsTVC.m in Sources */,
 				48FB605E1A6C578F001D0BC0 /* LoggedInTVC.m in Sources */,
 				481375441A6DAD1F00B94436 /* CustomizedTabBarController.m in Sources */,
 				48E0F2531A6B14F100E46D58 /* main.m in Sources */,
+				486807FF1A6DD9630091F979 /* User.m in Sources */,
 				48FB60671A6C61B1001D0BC0 /* UserLoggedInViewController.m in Sources */,
 				48FB60661A6C61B1001D0BC0 /* LoggedInViewController2.m in Sources */,
 				48FB60651A6C61B1001D0BC0 /* CustomCell.m in Sources */,
+				486AD6741A70CCC7001993B8 /* NewClassViewController.m in Sources */,
 				48507E241A6C729000E0F9A0 /* CustomLoginViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
